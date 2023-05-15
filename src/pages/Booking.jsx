@@ -5,7 +5,7 @@ import BookingCard from "./BookingCard";
 const Booking = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/checkout_user?email=${user?.email}`;
+  const url = `https://car-doctor-server-akkhan06.vercel.app/checkout_user?email=${user?.email}`;
 
   const [bookingProducts, setBookingProducts] = useState([]);
   // const [lodding, setLodding] = useState(false);
