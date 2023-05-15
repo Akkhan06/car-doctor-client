@@ -7,6 +7,8 @@ const Booking = () => {
 
   const url = `https://car-doctor-server-akkhan06.vercel.app/checkout_user?email=${user?.email}`;
 
+  console.log(user)
+
   const [bookingProducts, setBookingProducts] = useState([]);
   // const [lodding, setLodding] = useState(false);
   useEffect(() => {
@@ -22,7 +24,7 @@ const Booking = () => {
           setBookingProducts(data)
         }
       });
-  }, [/*lodding*/]);
+  }, [url]);
 
   const delateHandler = (id) => {
     fetch(`https://car-doctor-server-akkhan06.vercel.app/checkout_all/${id}`,{
@@ -34,6 +36,7 @@ const Booking = () => {
         setBookingProducts(finalResult)
     })
   }
+
 
   const confromHandler = id => {
     fetch(`https://car-doctor-server-akkhan06.vercel.app/checkout_all/${id}`,{
@@ -47,8 +50,8 @@ const Booking = () => {
     .then(doc => {
       console.log(doc)
       if (doc.modifiedCount > 0) {
-        const remaning = bookingProducts.filter(x => x._id !==id)
-        const updated = bookingProducts.find(x => x._id === id)
+        const remaning = bookingProducts?.filter(x => x?._id !==id)
+        const updated = bookingProducts?.find(x => x?._id === id)
         console.log(remaning)
         updated.status = 'confirm'
         const newBooking = [...remaning, updated]
@@ -95,7 +98,8 @@ const Booking = () => {
 
           <tbody>
             {/* row 1 */}
-            {bookingProducts?.map((booking) => (
+            {
+            bookingProducts?.length && bookingProducts?.map((booking) => (
               <BookingCard key={booking._id} booking={booking} confromHandler={confromHandler} delateHandler={delateHandler}></BookingCard>
             ))}
           </tbody>

@@ -6,6 +6,7 @@ const auth = getAuth(app)
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [lodding, setLodding] = useState(true)
+    console.log(user)
 
     const googleProvider = new GoogleAuthProvider()
 
@@ -21,14 +22,15 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, carentUser => {
             setUser(carentUser)
+
             setLodding(false)
             console.log("this is my onAuthChange", carentUser)
 
-            if (carentUser) {
+            if (carentUser.email) {
                 const logedUser = {
                     email: carentUser.email
                   }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://car-doctor-server-akkhan06.vercel.app/jwt', {
                 method: "POST",
                 headers: {
                   'content-type': "application/json"
