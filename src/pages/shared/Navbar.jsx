@@ -7,7 +7,9 @@ const Navbar = () => {
   const {logOut, user} = useContext(AuthContext)
   const logoutHandler = () => {
     logOut()
-    .then(result => {}).then(error => {})
+    .then(result => {
+      
+    }).then(error => {})
   }
 const navi = <>
  <>

@@ -78,7 +78,7 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name='password'
                   placeholder="password"
                   className="input input-bordered"
